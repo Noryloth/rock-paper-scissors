@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let userScore = 0;
+      let computerScore = 0;
+
+      function getUserChoice() {
+        let userChoice = prompt();
+        console.log(userChoice);
+        return userChoice;
+      }
+
+      function getComputerChoice() {
+        let computerChoice = Math.floor(Math.random() * 3) + 1;
+        if (computerChoice === 1) {
+          computerChoice = "R";
+        } else if (computerChoice === 2) {
+          computerChoice = "P";
+        } else {
+          computerChoice = "S";
+        }
+        console.log(computerChoice);
+        return computerChoice;
+      }
+
+      function playRound(userChoice, computerChoice) {
+        if (userChoice === computerChoice) {
+          console.log("Draw! Nobody wins.");
+        } else if (userChoice === "R" && computerChoice === "P") {
+          console.log("Computer wins! Paper folds the rock.");
+          computerScore++;
+        } else if (userChoice === "R" && computerChoice === "S") {
+          console.log("Player wins! Rock breaks the scissors.");
+          userScore++;
+        } else if (userChoice === "P" && computerChoice === "R") {
+          console.log("Player wins! Paper folds the rock.");
+          userScore++;
+        } else if (userChoice === "P" && computerChoice === "S") {
+          console.log("Computer wins! Scissors cut the paper.");
+          computerScore++;
+        } else if (userChoice === "S" && computerChoice === "R") {
+          console.log("Computer wins! Rock breaks the scissors.");
+          computerScore++;
+        } else if (userChoice === "S" && computerChoice === "P") {
+          console.log("Player wins! Scissors cut the paper.");
+          userScore++;
+        }
+        console.log("User's score:" + userScore);
+        console.log("Computer's score:" + computerScore);
+      }
+
+      function playGame() {
+        for (i = 0; i < 3; i++) {
+          const userSelection = getUserChoice();
+          const computerSelection = getComputerChoice();
+          playRound(userSelection, computerSelection);
+        }
+      }
+
+      playGame();
+    </script>
+  </body>
+</html>
